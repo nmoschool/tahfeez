@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستعرض ملفات مدرسة تحفيظ القرآن بالبجادية</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-navy: #0f172a;
+            --navy-light: #1e293b;
+            --accent-gold: #c29958;
+            --text-light: #f8fafc;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--primary-navy);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* === الخلفية المتحركة والزخارف الهندسية === */
+        .bg-elements {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* زخرفة هندسية 1 (مربع مائل) */
+        .geo-shape {
+            position: absolute;
+            border: 1px solid rgba(194, 153, 88, 0.2);
+            animation: rotateShape 20s infinite linear;
+        }
+        .shape-1 {
+            width: 150px; height: 150px;
+            top: 15%; left: -50px;
+            transform: rotate(45deg);
+        }
+        .shape-2 {
+            width: 200px; height: 200px;
+            bottom: 10%; right: -60px;
+            border-radius: 30px;
+            animation-duration: 30s;
+        }
+
+        @keyframes rotateShape {
+            from { transform: rotate(0deg); opacity: 0.1; }
+            50% { opacity: 0.4; }
+            to { transform: rotate(360deg); opacity: 0.1; }
+        }
+
+        /* توهج خلفي */
+        .glow-bg {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(194, 153, 88, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatGlow 15s infinite ease-in-out;
+        }
+        .glow-1 { top: -100px; right: -100px; }
+        .glow-2 { bottom: -150px; left: -150px; animation-delay: -5s; }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        /* === الهيدر والأيقونة === */
+        header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px 20px 10px;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .icon-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(194, 153, 88, 0.3);
+            border-radius: 50%;
+            animation: ripple 3s infinite ease-out;
+        }
+        .c1 { width: 100px; height: 100px; animation-delay: 0s; }
+        .c2 { width: 140px; height: 140px; animation-delay: 1s; }
+
+        @keyframes ripple {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+        }
+
+        .logo-icon-main {
+            position: relative;
+            width: 85px; height: 85px;
+            background: rgba(194, 153, 88, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            z-index: 2;
+        }
+
+        h1 { font-size: 1.6rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 8px; }
+        .subtitle { font-size: 1rem; padding: 4px 20px; border: 1px dashed var(--accent-gold); border-radius: 8px; color: var(--text-light); display: inline-block; }
+
+        /* === صندوق الاقتباس === */
+        .quote-card {
+            background: linear-gradient(145deg, var(--navy-light), var(--primary-navy));
+            border: 1px solid rgba(194, 153, 88, 0.2);
+            border-radius: 20px;
+            padding: 15px 25px;
+            margin: 25px auto;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        .quote-icon { font-size: 1.8rem; color: var(--accent-gold); opacity: 0.5; font-family: "Amiri", serif; }
+        .quote-text { font-family: 'Amiri', serif; font-size: 1.15rem; line-height: 1.7; color: var(--text-light); margin-bottom: 12px; }
+        .quote-author { color: #2dd4bf; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .quote-author::after { content: ''; width: 20px; height: 1.5px; background: #2dd4bf; }
+
+        /* === حاوية الأزرار === */
+        .container {
+            position: relative;
+            z-index: 1;
+            background-color: var(--white);
+            flex-grow: 1;
+            border-radius: 40px 40px 0 0;
+            padding: 50px 25px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+        }
+
+        .main-btn {
+            width: 100%; padding: 22px; border-radius: 18px; font-size: 1.25rem; font-weight: 700; text-decoration: none;
+            display: flex; justify-content: center; align-items: center; gap: 12px; transition: var(--transition); color: white;
+            border: none; overflow: hidden; position: relative;
+        }
+        .btn-teachers { background: linear-gradient(135deg, var(--accent-gold), #ae8647); }
+        .btn-students { background: linear-gradient(135deg, var(--primary-navy), #1e293b); }
+        
+        .main-btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
+        .main-btn::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        .main-btn:hover::after { left: 100%; }
+
+        footer { background: white; text-align: center; padding: 30px; color: #64748b; font-size: 0.9rem; border-top: 1px solid #f1f5f9; z-index: 1; }
+        .copyright span { color: var(--primary-navy); font-weight: 900; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-elements">
+        <div class="glow-bg glow-1"></div>
+        <div class="glow-bg glow-2"></div>
+        <div class="geo-shape shape-1"></div>
+        <div class="geo-shape shape-2"></div>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <div class="icon-circle c1"></div>
+            <div class="icon-circle c2"></div>
+            <div class="logo-icon-main">
+                <i class="fas fa-file-shield"></i>
+            </div>
+        </div>
+        <h1>مستعرض ملفات مدرسة تحفيظ القرآن بالبجادية</h1>
+        <div class="subtitle">بوابة الوصول السريع للملفات</div>
+    </header>
+
+    <div class="quote-card">
+        <div class="quote-icon">"</div>
+        <p class="quote-text">
+            العلمُ ليسَ بما حُفِظ ، إنما العلمُ بما نُفِع ؛ فليكن طموحُكم عنانَ السماء ، وإخلاصُكم نوراً يملأُ الآفاق .
+        </p>
+        <div class="quote-author">إدارة المدرسة</div>
+    </div>
+
+    <div class="container">
+        <a href="https://noor.moe.gov.sa/Noor/Login.aspx" class="main-btn btn-teachers">
+            <i class="fas fa-chalkboard-teacher"></i>
+            قسم المعلمين
+        </a>
+        
+        <a href="https://noor.moe.gov.sa/Noor/Login.aspx" class="main-btn btn-students">
+            <i class="fas fa-user-graduate"></i>
+            قسم الطلاب
+        </a>
+    </div>
+
+    <footer>
+        <div class="copyright">حقوق برمجة وتطوير &copy; 2026 | <span>NMO</span></div>
+    </footer>
+
+</body>
+</html>
