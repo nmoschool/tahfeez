@@ -32,7 +32,6 @@
             position: relative;
         }
 
-        /* === الخلفية والعناصر العائمة === */
         .bg-elements {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -69,7 +68,6 @@
             50% { transform: translate(60px, 40px) scale(1.1); }
         }
 
-        /* === الهيدر والأيقونة === */
         header {
             position: relative;
             z-index: 1;
@@ -120,9 +118,8 @@
             50% { transform: translateY(-15px); }
         }
 
-        h1 { font-size: 1.6rem; font-weight: 800; color: var(--accent-gold); margin-top: 15px; line-height: 1.4; }
+        h2 { font-size: 1.6rem; font-weight: 800; color: var(--accent-gold); margin-top: 15px; line-height: 1.4; text-align: center;}
 
-        /* === صندوق الاقتباس === */
         .quote-container {
             position: relative;
             z-index: 1;
@@ -160,7 +157,6 @@
         }
         .quote-author::before, .quote-author::after { content: ""; width: 20px; height: 1px; background: var(--accent-gold); opacity: 0.5; }
 
-        /* === حاوية الأزرار البيضاء === */
         .container {
             position: relative;
             z-index: 1;
@@ -260,14 +256,6 @@
             </div>
             <i class="fas fa-chevron-left"></i>
         </a>
-        
-        <a href="https://nmoschool.github.io/Students" class="main-btn">
-            <div class="btn-text">
-                <i class="fas fa-user-check"></i>
-                <span>قسم الطلاب</span>
-            </div>
-            <i class="fas fa-chevron-left"></i>
-        </a>
 
         <a href="https://c.autorasd.com/certificates/b0a58f5f8694310190b05d2d60beff99" class="main-btn">
             <div class="btn-text">
@@ -281,22 +269,21 @@
     <footer>
         <div class="copyright">حقوق برمجة وتطوير &copy; 2026 | <span>NMO</span></div>
     </footer>
-<script>
-    // 1. عند التمرير، قم بحفظ موضع التمرير الحالي
-    window.addEventListener('scroll', function() {
-        sessionStorage.setItem('scrollPosition', window.scrollY);
-    });
 
-    // 2. عند تحميل الصفحة، تحقق مما إذا كان هناك موضع محفوظ وقم بالانتقال إليه
-    window.addEventListener('load', function() {
-        if (sessionStorage.getItem('scrollPosition') !== null) {
-            window.scrollTo({
-                top: parseInt(sessionStorage.getItem('scrollPosition')),
-                behavior: 'smooth' // انتقال ناعم
-            });
-        }
-    });
-</script>
+    <script>
+        window.addEventListener('scroll', function() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('scrollPosition') !== null) {
+                window.scrollTo({
+                    top: parseInt(sessionStorage.getItem('scrollPosition')),
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
