@@ -40,11 +40,53 @@
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* استخدام نمط أرابيسك كثيف وواضح */
             background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-            opacity: 0.15; /* تم زيادة الوضوح بناءً على طلبك */
+            opacity: 0.15;
             z-index: 0;
             pointer-events: none;
+        }
+
+        /* --- (تعديل جديد) تنسيقات شريط الوقت والتاريخ الحي --- */
+        .school-date-section {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin: 10px auto 20px;
+            width: 100%;
+        }
+
+        .date-badge-wrapper {
+            background: rgba(30, 41, 59, 0.4); /* لون navy خفيف شفاف */
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(194, 153, 88, 0.4); /* إطار ذهبي شفاف */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .gold-icon-live {
+            color: var(--accent-gold);
+            margin-left: 8px;
+            font-size: 1rem;
+            animation: goldPulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes goldPulseIcon {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; text-shadow: 0 0 10px var(--accent-gold); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .date-sep {
+            margin: 0 12px;
+            color: var(--accent-gold);
+            opacity: 0.5;
+            font-weight: 300;
         }
 
         .bg-elements {
@@ -103,7 +145,6 @@
 
         h2 { font-size: 1.5rem; font-weight: 800; color: var(--accent-gold); margin-top: 15px; line-height: 1.4; text-align: center;}
 
-        /* --- شريط الأخبار بتصميم نافذة الاقتباس --- */
         .ticker-container {
             position: relative;
             z-index: 1;
@@ -129,7 +170,6 @@
             color: var(--accent-gold-bright);
             font-weight: 700;
             font-size: 0.85rem;
-            /* حركة من اليسار إلى اليمين (المعاكسة) */
             animation: tickerScrollInverse 25s linear infinite;
         }
 
@@ -138,7 +178,6 @@
             100% { transform: translateX(100%); }
         }
 
-        /* --- نافذة الاقتباس (النص الأصلي) --- */
         .quote-container {
             position: relative;
             z-index: 1;
@@ -174,7 +213,6 @@
         }
         .quote-author::before, .quote-author::after { content: ""; width: 15px; height: 1px; background: var(--accent-gold); opacity: 0.5; }
 
-        /* --- حاوية الروابط والإحصائيات --- */
         .container {
             position: relative;
             z-index: 1;
@@ -191,7 +229,6 @@
             box-shadow: 0 -15px 50px rgba(0,0,0,0.3);
         }
 
-        /* قسم الإحصائيات */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -210,7 +247,6 @@
         .stat-num { display: block; font-size: 1.6rem; font-weight: 900; color: var(--primary-navy); }
         .stat-label { font-size: 0.8rem; color: #64748b; font-weight: 600; }
 
-        /* الأزرار و Micro-interactions */
         .main-btn {
             position: relative;
             overflow: hidden;
@@ -220,7 +256,6 @@
             border: 1px solid #e2e8f0;
         }
 
-        /* تأثير اللمعان Shine */
         .main-btn::after {
             content: "";
             position: absolute;
@@ -252,7 +287,6 @@
 
         .main-btn:hover .btn-text i { background: var(--accent-gold); color: var(--primary-navy); }
 
-        /* --- استعلامات الوسائط (قياسات الكمبيوتر والجوال) --- */
         @media (max-width: 480px) {
             header { padding: 35px 15px 10px; }
             .logo-icon-main { width: 75px; height: 75px; font-size: 2rem; }
@@ -260,11 +294,7 @@
             .quote-text { font-size: 1.05rem; }
             .container { border-radius: 30px 30px 0 0; padding: 30px 15px; }
             .stat-num { font-size: 1.4rem; }
-        }
-
-        @media (min-width: 1024px) {
-            .container { max-width: 550px; }
-            .main-btn { padding: 22px; }
+            .date-badge-wrapper { font-size: 0.75rem; padding: 8px 15px; }
         }
 
         footer { 
@@ -297,6 +327,18 @@
             تحفيظ القرآن بالبجادية
         </h2>
     </header>
+
+    <section class="school-date-section">
+        <div class="date-badge-wrapper" dir="rtl">
+            <i class="fas fa-calendar-alt gold-icon-live"></i>
+            <span id="live-hijri">جاري التحميل...</span> 
+            <span class="date-sep">|</span>
+            <span id="live-gregorian"></span>
+            <span class="date-sep">|</span>
+            <i class="fas fa-clock gold-icon-live"></i>
+            <span id="live-time"></span>
+        </div>
+    </section>
 
     <div class="ticker-container">
         <div class="ticker-content-box">
@@ -349,6 +391,35 @@
     </footer>
 
     <script>
+        // دالة تحديث الوقت والتاريخ الحي (الهجري والميلادي)
+        function updateLiveDateTime() {
+            const now = new Date();
+            
+            // التاريخ الهجري (تعديل -1 يوم لضبط التقويم المحلي)
+            const hijriDate = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            }).format(new Date(now.getTime() - 86400000));
+
+            // التاريخ الميلادي
+            const gregDate = new Intl.DateTimeFormat('ar-EG', {
+                day: 'numeric', month: 'numeric', year: 'numeric'
+            }).format(now);
+
+            // الوقت المباشر
+            const timeStr = now.toLocaleTimeString('ar-EG', {
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+
+            // حقن البيانات في العناصر
+            document.getElementById('live-hijri').innerText = hijriDate;
+            document.getElementById('live-gregorian').innerText = gregDate;
+            document.getElementById('live-time').innerText = timeStr;
+        }
+
+        // تشغيل التحديث كل ثانية
+        setInterval(updateLiveDateTime, 1000);
+        updateLiveDateTime();
+
         // استعادة موقع التمرير للحفاظ على تجربة المستخدم
         window.addEventListener('scroll', function() {
             sessionStorage.setItem('scrollPosition', window.scrollY);
