@@ -391,34 +391,49 @@
     </footer>
 
     <script>
-        // دالة تحديث الوقت والتاريخ الحي (الهجري والميلادي)
-        function updateLiveDateTime() {
-            const now = new Date();
-            
-            // التاريخ الهجري (تعديل -1 يوم لضبط التقويم المحلي)
-            const hijriDate = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
-                day: 'numeric', month: 'long', year: 'numeric'
-            }).format(new Date(now.getTime() - 86400000));
+        function updateSchoolClock() {
+    // 1. الحصول على الوقت الحالي
+    const now = new Date();
+    
+    // --- دالة إضافة الأيام لتعديل التاريخ (+1 أو -1) ---
+    const dayOffset = 0; // غير الرقم هنا إلى +1 للإضافة أو -1 للطرح
+    const adjustedDate = new Date(now);
+    adjustedDate.setDate(now.getDate() + dayOffset);
+    // -----------------------------------------------
 
-            // التاريخ الميلادي
-            const gregDate = new Intl.DateTimeFormat('ar-EG', {
-                day: 'numeric', month: 'numeric', year: 'numeric'
-            }).format(now);
+    // 2. التاريخ الهجري (باستخدام التاريخ المعدل)
+    const hijriOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+    let hijriDate = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', hijriOptions).format(adjustedDate);
+    
+    // التأكد من عدم تكرار رمز "هـ"
+    if (!hijriDate.includes("هـ")) {
+        hijriDate += " هـ";
+    }
+    
+    // 3. التاريخ الميلادي (يمكنك استخدام adjustedDate إذا أردت تعديله أيضاً أو now للتاريخ الفعلي)
+    const gregOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    let gregDate = new Intl.DateTimeFormat('ar-EG', gregOptions).format(now);
+    gregDate += " م"; 
+    
+    // 4. الوقت المباشر مع اختصار ص/م
+    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+    let timeString = now.toLocaleTimeString('ar-EG', timeOptions);
+    timeString = timeString.replace("صباحاً", "ص").replace("مساءً", "م");
 
-            // الوقت المباشر
-            const timeStr = now.toLocaleTimeString('ar-EG', {
-                hour: '2-digit', minute: '2-digit', second: '2-digit'
-            });
+    // تحديث العناصر في الصفحة
+    const hEl = document.getElementById('hijri-clock');
+    const gEl = document.getElementById('gregorian-clock');
+    const tEl = document.getElementById('live-time-clock');
 
-            // حقن البيانات في العناصر
-            document.getElementById('live-hijri').innerText = hijriDate;
-            document.getElementById('live-gregorian').innerText = gregDate;
-            document.getElementById('live-time').innerText = timeStr;
-        }
+    if(hEl) hEl.textContent = hijriDate;
+    if(gEl) gEl.textContent = gregDate;
+    if(tEl) tEl.textContent = timeString;
+}
 
-        // تشغيل التحديث كل ثانية
-        setInterval(updateLiveDateTime, 1000);
-        updateLiveDateTime();
+// البدء بالتحديث
+setInterval(updateSchoolClock, 1000);
+updateSchoolClock();
+
 
         // استعادة موقع التمرير للحفاظ على تجربة المستخدم
         window.addEventListener('scroll', function() {
