@@ -35,7 +35,6 @@
             position: relative;
         }
 
-        /* --- الأنماط الإسلامية (الخلفية المتميزة) --- */
         body::before {
             content: "";
             position: fixed;
@@ -46,7 +45,6 @@
             pointer-events: none;
         }
 
-        /* --- (تعديل جديد) تنسيقات شريط الوقت والتاريخ الحي --- */
         .school-date-section {
             position: relative;
             z-index: 1;
@@ -56,7 +54,7 @@
         }
 
         .date-badge-wrapper {
-            background: rgba(30, 41, 59, 0.4); /* لون navy خفيف شفاف */
+            background: rgba(30, 41, 59, 0.4);
             color: var(--white);
             padding: 10px 20px;
             border-radius: 15px;
@@ -64,7 +62,7 @@
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            border: 1px solid rgba(194, 153, 88, 0.4); /* إطار ذهبي شفاف */
+            border: 1px solid rgba(194, 153, 88, 0.4);
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
@@ -82,25 +80,10 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        .date-sep {
-            margin: 0 12px;
-            color: var(--accent-gold);
-            opacity: 0.5;
-            font-weight: 300;
-        }
+        .date-sep { margin: 0 12px; color: var(--accent-gold); opacity: 0.5; font-weight: 300; }
 
-        .bg-elements {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .geo-shape {
-            position: absolute;
-            border: 1.5px solid rgba(194, 153, 88, 0.2);
-            animation: rotateShape 25s infinite linear;
-        }
+        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .geo-shape { position: absolute; border: 1.5px solid rgba(194, 153, 88, 0.2); animation: rotateShape 25s infinite linear; }
         .shape-1 { width: 150px; height: 150px; top: 10%; left: -40px; transform: rotate(45deg); }
         .shape-2 { width: 280px; height: 280px; bottom: 20%; right: -100px; border-radius: 40px; }
         
@@ -110,203 +93,164 @@
             to { transform: rotate(360deg); opacity: 0.1; }
         }
 
-        header {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 50px 20px 10px;
-        }
-
-        .logo-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-
+        header { position: relative; z-index: 1; text-align: center; padding: 50px 20px 10px; }
+        .logo-wrapper { position: relative; display: inline-block; margin-bottom: 25px; }
         .logo-icon-main {
             position: relative;
             width: 90px; height: 90px;
             background: linear-gradient(135deg, var(--accent-gold) 0%, #8a6d3d 100%);
             border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--primary-navy);
-            z-index: 2;
-            box-shadow: 0 15px 35px rgba(194, 153, 88, 0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--primary-navy);
+            z-index: 2; box-shadow: 0 15px 35px rgba(194, 153, 88, 0.4);
             animation: professionalFloat 4s ease-in-out infinite;
         }
 
-        @keyframes professionalFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+        @keyframes professionalFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
         h2 { font-size: 1.5rem; font-weight: 800; color: var(--accent-gold); margin-top: 15px; line-height: 1.4; text-align: center;}
 
         .ticker-container {
-            position: relative;
-            z-index: 1;
-            max-width: 550px;
-            margin: 20px auto 0;
-            padding: 1.5px;
-            border-radius: 20px;
+            position: relative; z-index: 1; max-width: 550px; margin: 20px auto 0;
+            padding: 1.5px; border-radius: 20px;
             background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
             width: 90%;
         }
 
         .ticker-content-box {
-            background: rgba(17, 17, 17, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 10px 20px;
-            border-radius: 19px;
-            overflow: hidden;
-            white-space: nowrap;
+            background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(15px);
+            padding: 10px 20px; border-radius: 19px; overflow: hidden; white-space: nowrap;
         }
 
         .ticker-text {
-            display: inline-block;
-            color: var(--accent-gold-bright);
-            font-weight: 700;
-            font-size: 0.85rem;
+            display: inline-block; color: var(--accent-gold-bright);
+            font-weight: 700; font-size: 0.85rem;
             animation: tickerScrollInverse 25s linear infinite;
         }
 
-        @keyframes tickerScrollInverse {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+        @keyframes tickerScrollInverse { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .quote-container {
-            position: relative;
-            z-index: 1;
-            max-width: 550px;
-            margin: 20px auto 35px;
-            padding: 2px;
-            border-radius: 30px;
+            position: relative; z-index: 1; max-width: 550px; margin: 20px auto 35px;
+            padding: 2px; border-radius: 30px;
             background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
             width: 90%;
         }
 
         .quote-content {
-            background: rgba(17, 17, 17, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 25px;
-            border-radius: 28px;
-            text-align: center;
+            background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(15px);
+            padding: 25px; border-radius: 28px; text-align: center;
         }
 
-        .quote-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: var(--text-light);
-        }
-
+        .quote-text { font-family: 'Amiri', serif; font-size: 1.15rem; line-height: 1.7; color: var(--text-light); }
         .quote-author {
-            margin-top: 12px;
-            color: var(--accent-gold);
-            font-weight: 700;
-            font-size: 0.85rem;
+            margin-top: 12px; color: var(--accent-gold); font-weight: 700; font-size: 0.85rem;
             display: flex; align-items: center; justify-content: center; gap: 10px;
         }
         .quote-author::before, .quote-author::after { content: ""; width: 15px; height: 1px; background: var(--accent-gold); opacity: 0.5; }
 
         .container {
-            position: relative;
-            z-index: 1;
-            background-color: var(--white);
-            flex-grow: 1;
-            border-radius: 40px 40px 0 0;
-            padding: 40px 20px;
-            max-width: 650px;
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            position: relative; z-index: 1; background-color: var(--white);
+            flex-grow: 1; border-radius: 40px 40px 0 0; padding: 40px 20px;
+            max-width: 650px; margin: 0 auto; width: 100%;
+            display: flex; flex-direction: column; gap: 15px;
             box-shadow: 0 -15px 50px rgba(0,0,0,0.3);
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
         .stat-card {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: var(--transition);
+            background: #f8fafc; padding: 15px; border-radius: 16px; text-align: center;
+            border: 1px solid #e2e8f0; transition: var(--transition);
         }
         .stat-card:hover { border-color: var(--accent-gold); transform: translateY(-3px); }
         .stat-num { display: block; font-size: 1.6rem; font-weight: 900; color: var(--primary-navy); }
         .stat-label { font-size: 0.8rem; color: #64748b; font-weight: 600; }
 
         .main-btn {
-            position: relative;
-            overflow: hidden;
-            width: 100%; padding: 18px; border-radius: 18px; font-size: 1rem; font-weight: 700; text-decoration: none;
-            display: flex; justify-content: space-between; align-items: center; transition: var(--transition); color: var(--navy-light);
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
+            position: relative; overflow: hidden; width: 100%; padding: 18px; border-radius: 18px;
+            font-size: 1rem; font-weight: 700; text-decoration: none;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: var(--transition); color: var(--navy-light);
+            background: #f1f5f9; border: 1px solid #e2e8f0;
         }
 
-        .main-btn::after {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.6s;
+        .main-btn:hover { 
+            transform: translateY(-3px); background: var(--primary-navy);
+            color: var(--white); border-color: var(--primary-navy); padding-right: 25px;
         }
-        .main-btn:hover::after { left: 100%; }
 
         .btn-text { display: flex; align-items: center; gap: 12px; }
-
         .btn-text i {
-            width: 40px; height: 40px;
-            background: var(--white);
-            color: var(--accent-gold);
+            width: 40px; height: 40px; background: var(--white); color: var(--accent-gold);
             display: flex; align-items: center; justify-content: center;
             border-radius: 12px; font-size: 1.1rem; transition: var(--transition);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
-        .main-btn:hover { 
-            transform: translateY(-3px);
-            background: var(--primary-navy);
-            color: var(--white);
-            border-color: var(--primary-navy);
-            padding-right: 25px;
+        /* --- زر الإعدادات المخفي --- */
+        #admin-trigger {
+            position: fixed; bottom: 10px; left: 10px;
+            width: 30px; height: 30px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-gold); opacity: 0.1;
+            cursor: pointer; z-index: 9999; transition: 0.3s;
+        }
+        #admin-trigger:hover { opacity: 0.8; }
+
+        /* --- لوحة التحكم الجديدة --- */
+        .admin-panel-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 9998;
+            display: none; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .admin-panel-overlay.active { display: block; opacity: 1; }
+
+        .admin-panel {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
+            width: 90%; max-width: 320px; background: var(--white);
+            border-radius: 25px; padding: 25px; z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center; font-family: 'Cairo', sans-serif;
+            display: none; opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .admin-panel.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        .admin-panel h3 {
+            color: #1e293b; font-size: 1.3rem; font-weight: 800;
+            margin-bottom: 25px;
         }
 
-        .main-btn:hover .btn-text i { background: var(--accent-gold); color: var(--primary-navy); }
+        .offset-controls {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;
+        }
+
+        .offset-btn {
+            background: #f1f5f9; color: #1e293b; border: 1px solid #e2e8f0;
+            padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: var(--transition); flex: 1;
+        }
+        .offset-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
+
+        .reset-btn {
+            background: var(--accent-gold); color: var(--white);
+            border: none; padding: 12px 30px; border-radius: 12px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            transition: var(--transition); width: 100%; margin-bottom: 15px;
+        }
+        .reset-btn:hover { background: #b08a4f; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(194, 153, 88, 0.3); }
+
+        .current-offset-text { color: #64748b; font-size: 0.9rem; font-weight: 600; }
+
+        footer { background: white; text-align: center; padding: 25px 20px; position: relative; z-index: 1; }
+        .copyright { color: #64748b; font-size: 0.85rem; }
+        .copyright span { color: var(--primary-navy); font-weight: 900; border-bottom: 2px solid var(--accent-gold); }
 
         @media (max-width: 480px) {
             header { padding: 35px 15px 10px; }
             .logo-icon-main { width: 75px; height: 75px; font-size: 2rem; }
             h2 { font-size: 1.3rem; }
-            .quote-text { font-size: 1.05rem; }
             .container { border-radius: 30px 30px 0 0; padding: 30px 15px; }
-            .stat-num { font-size: 1.4rem; }
-            .date-badge-wrapper { font-size: 0.75rem; padding: 8px 15px; }
         }
-
-        footer { 
-            background: white; 
-            text-align: center; 
-            padding: 25px 20px; 
-            position: relative;
-            z-index: 1;
-        }
-        
-        .copyright { color: #64748b; font-size: 0.85rem; }
-        .copyright span { color: var(--primary-navy); font-weight: 900; border-bottom: 2px solid var(--accent-gold); }
     </style>
 </head>
 <body>
@@ -316,16 +260,29 @@
         <div class="geo-shape shape-2"></div>
     </div>
 
+    <div id="admin-trigger">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <div class="admin-panel-overlay" id="admin-overlay"></div>
+
+    <div class="admin-panel" id="admin-panel">
+        <h3>تعديل التقويم</h3>
+        <div class="offset-controls">
+            <button class="offset-btn" id="decrease-day">يوم -1</button>
+            <button class="offset-btn" id="increase-day">يوم +1</button>
+        </div>
+        <button class="reset-btn" id="reset-offset">إعادة ضبط</button>
+        <div class="current-offset-text">الإزاحة الحالية: <span id="offset-value">0</span> يوم</div>
+    </div>
+
     <header>
         <div class="logo-wrapper">
             <div class="logo-icon-main">
                 <i class="fas fa-file-signature"></i>
             </div>
         </div>
-        <h2>
-            مستعرض ملفات مدرسة<br>
-            تحفيظ القرآن بالبجادية
-        </h2>
+        <h2>مستعرض ملفات مدرسة<br>تحفيظ القرآن بالبجادية</h2>
     </header>
 
     <section class="school-date-section">
@@ -342,17 +299,13 @@
 
     <div class="ticker-container">
         <div class="ticker-content-box">
-            <div class="ticker-text">
-                  |  عوداً حميداً  ،  نتمنى لكم فصل دراسي حافل بالعطاء ..
-            </div>
+            <div class="ticker-text">| عوداً حميداً ، نتمنى لكم فصل دراسي حافل بالعطاء ..</div>
         </div>
     </div>
 
     <div class="quote-container">
         <div class="quote-content">
-            <p class="quote-text">
-                " العلمُ ليسَ بما حُفِظ ، إنما العلمُ بما نُفِع ؛ فليكن طموحُكم عنانَ السماء ، وإخلاصُكم نوراً يملأُ الآفاق "
-            </p>
+            <p class="quote-text">" العلمُ ليسَ بما حُفِظ ، إنما العلمُ بما نُفِع ؛ فليكن طموحُكم عنانَ السماء ، وإخلاصُكم نوراً يملأُ الآفاق "</p>
             <div class="quote-author">إدارة المدرسة</div>
         </div>
     </div>
@@ -391,49 +344,70 @@
     </footer>
 
     <script>
-        // دالة تحديث الوقت والتاريخ الحي (الهجري والميلادي)
+        let dayOffset = parseInt(localStorage.getItem('hijriOffset')) || -1;
+
         function updateLiveDateTime() {
             const now = new Date();
-            
-            // التاريخ الهجري (تعديل -1 يوم لضبط التقويم المحلي)
+            const adjustedDate = new Date(now.getTime() + (dayOffset * 86400000));
+
             const hijriDate = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
                 day: 'numeric', month: 'long', year: 'numeric'
-            }).format(new Date(now.getTime() - 86400000));
+            }).format(adjustedDate);
 
-            // التاريخ الميلادي
             const gregDate = new Intl.DateTimeFormat('ar-EG', {
                 day: 'numeric', month: 'numeric', year: 'numeric'
             }).format(now);
 
-            // الوقت المباشر
             const timeStr = now.toLocaleTimeString('ar-EG', {
                 hour: '2-digit', minute: '2-digit', second: '2-digit'
             });
 
-            // حقن البيانات في العناصر
             document.getElementById('live-hijri').innerText = hijriDate;
             document.getElementById('live-gregorian').innerText = gregDate;
             document.getElementById('live-time').innerText = timeStr;
+            
+            // تحديث قيمة الإزاحة في لوحة التحكم
+            document.getElementById('offset-value').innerText = dayOffset;
         }
 
-        // تشغيل التحديث كل ثانية
         setInterval(updateLiveDateTime, 1000);
         updateLiveDateTime();
 
-        // استعادة موقع التمرير للحفاظ على تجربة المستخدم
-        window.addEventListener('scroll', function() {
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        });
+        // منطق لوحة التحكم الجديدة
+        const trigger = document.getElementById('admin-trigger');
+        const panel = document.getElementById('admin-panel');
+        const overlay = document.getElementById('admin-overlay');
+        
+        function openPanel() {
+            panel.classList.add('active');
+            overlay.classList.add('active');
+        }
 
-        window.addEventListener('load', function() {
+        function closePanel() {
+            panel.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        trigger.addEventListener('click', openPanel);
+        overlay.addEventListener('click', closePanel);
+
+        function updateOffset(newOffset) {
+            dayOffset = newOffset;
+            localStorage.setItem('hijriOffset', dayOffset);
+            updateLiveDateTime();
+        }
+
+        document.getElementById('increase-day').addEventListener('click', () => updateOffset(dayOffset + 1));
+        document.getElementById('decrease-day').addEventListener('click', () => updateOffset(dayOffset - 1));
+        document.getElementById('reset-offset').addEventListener('click', () => updateOffset(0));
+
+        // استعادة موقع التمرير
+        window.addEventListener('scroll', () => sessionStorage.setItem('scrollPosition', window.scrollY));
+        window.addEventListener('load', () => {
             if (sessionStorage.getItem('scrollPosition') !== null) {
-                window.scrollTo({
-                    top: parseInt(sessionStorage.getItem('scrollPosition')),
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: parseInt(sessionStorage.getItem('scrollPosition')), behavior: 'smooth' });
             }
         });
     </script>
-
 </body>
 </html>
